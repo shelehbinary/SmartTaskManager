@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  sql-server:
+    environment:
+      - SA_PASSWORD=YourStrong!Password123
+
+  api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=sql-server;Database=SmartTaskManager;User=sa;Password=YourStrong!Password123;TrustServerCertificate=true;
+    ports:
+      - "8080:80"
+    volumes:
+      - ./logs:/app/logs
+      - .:/src
